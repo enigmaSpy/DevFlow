@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-//import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import localFont from "next/font/local";
+import { ThemeProvider } from "next-themes";
+import Navbar from "@/components/navigation/navbar";
 
 const inter = localFont({
   src: "./Fonts/Inter/InterVF.ttf",
@@ -16,13 +17,12 @@ const spaceGrotesk = localFont({
 });
 export const metadata: Metadata = {
   title: "DevFlow",
-  description:
-    `A community-driven platform for asking and answering programming questions.
+  description: `A community-driven platform for asking and answering programming questions.
      Get help, share knowledge, and collaborate with devel from around the world.
      Explore topics in web development, mobile app development, algorithms, data structures, and more.`,
-     icons:{
-      icon: "/images/site-logo.svg"
-     }
+  icons: {
+    icon: "/images/site-logo.svg",
+  },
 };
 
 export default function RootLayout({
@@ -31,11 +31,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html 
+      lang="en"
+      suppressHydrationWarning
+    >
       <body
         className={`${inter.variable} ${spaceGrotesk.variable} antialiased`}
       >
-        {children}
+        <ThemeProvider 
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Navbar/>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
