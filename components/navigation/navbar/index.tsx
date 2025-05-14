@@ -2,7 +2,9 @@ import Link from "next/link";
 import React from "react";
 import Image from "next/image";
 import Theme from "./Theme";
+import MobileNavigation from "./MobileNavigation";
 const Navbar = () => {
+  
   return (
     <nav
       className="flex-between background-light900_dark200 fixed
@@ -21,6 +23,7 @@ const Navbar = () => {
       </Link>
       <p>Global search</p>
       <Theme/>
+      <MobileNavigation/>
     </nav>
   );
 };
